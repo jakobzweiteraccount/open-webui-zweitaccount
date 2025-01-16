@@ -163,9 +163,9 @@ COPY --chown=$UID:$GID --from=build /app/package.json /app/package.json
 # copy backend files
 COPY --chown=$UID:$GID ./backend .
 
-EXPOSE 8081
+EXPOSE 8080
 
-HEALTHCHECK CMD curl --silent --fail http://localhost:${PORT:-8081}/health | jq -ne 'input.status == true' || exit 1
+HEALTHCHECK CMD curl --silent --fail http://localhost:${PORT:-8080}/health | jq -ne 'input.status == true' || exit 1
 
 USER $UID:$GID
 

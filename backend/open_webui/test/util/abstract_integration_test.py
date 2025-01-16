@@ -62,7 +62,7 @@ class AbstractPostgresTest(AbstractIntegrationTest):
         host = get_docker_ip()
         user = env_vars_postgres["POSTGRES_USER"]
         pw = env_vars_postgres["POSTGRES_PASSWORD"]
-        port = 8081
+        port = 8080
         db = env_vars_postgres["POSTGRES_DB"]
         return f"postgresql://{user}:{pw}@{host}:{port}/{db}"
 
@@ -81,7 +81,7 @@ class AbstractPostgresTest(AbstractIntegrationTest):
                 detach=True,
                 environment=env_vars_postgres,
                 name=cls.DOCKER_CONTAINER_NAME,
-                ports={5432: ("0.0.0.0", 8081)},
+                ports={5432: ("0.0.0.0", 8080)},
                 command="postgres -c log_statement=all",
             )
             time.sleep(0.5)
